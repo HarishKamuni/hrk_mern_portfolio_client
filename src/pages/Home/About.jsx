@@ -3,6 +3,14 @@ import SectionTitle from '../../components/SectionTitle';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const About = () => {
+  const skills = [
+    'JavaScript',
+    'React',
+    'Node',
+    'Express',
+    'MongoDB',
+    'Firebase',
+  ];
   return (
     <div>
       <SectionTitle title={'About'} />
@@ -31,6 +39,20 @@ const About = () => {
             excepturi officia, culpa itaque assumenda incidunt hic consequuntur
             voluptate quod reiciendis non omnis perspiciatis illum.
           </p>
+        </div>
+      </div>
+      <div className="py-5">
+        <h1 className="text-tertiary text-xl">
+          Here are a few technologies I've been working with recently:
+        </h1>
+        <div className="flex flex-wrap gap-5 mt-5">
+          {skills.map((skill, index) => {
+            return (
+              <div className="border border-tertiary px-10 py-2">
+                <h1 className="text-tertiary">{skill}</h1>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
