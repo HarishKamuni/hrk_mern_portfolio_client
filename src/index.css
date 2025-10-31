@@ -2,14 +2,13 @@
 @import 'tailwindcss';
 
 @theme {
-    /* 🎨 Custom Colors */
+  /* 🎨 Custom Colors */
   --color-primary: #0a192f;
   --color-secondary: #f97316;
   --color-tertiary: #54d688;
 
-  
   /* 📱 Custom Breakpoints */
-   /* --breakpoint-xs: 400px; */
+  /* --breakpoint-xs: 400px; */
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
@@ -18,4 +17,20 @@
 
 * {
   font-family: 'Montserrat', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 1px #54d688; */
+  background-color: #0a192f;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #7085a224;
 }
