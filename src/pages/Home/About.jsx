@@ -14,15 +14,15 @@ const About = () => {
   return (
     <div>
       <SectionTitle title={'About'} />
-      <div className="flex items-center">
-        <div className="h-[70vh] w-4xl -ml-30">
+      <div className="flex items-center max-sm:flex-col">
+        <div className="h-[70vh] w-4xl -ml-30 max-sm:ml-0 max-sm:w-3xl">
           <DotLottieReact
             src="https://lottie.host/cee19b5c-a2f7-4aed-bb62-7b9b553e2265/egNbC0BVV3.lottie"
             loop
             autoplay
           />
         </div>
-        <div className="flex flex-col gap-5 w-1/2">
+        <div className="flex flex-col gap-5 w-1/2 max-sm:w-full">
           <p className="text-white text-sm font-light">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
             eveniet, culpa ad quaerat odio laboriosam earum perspiciatis error
@@ -42,14 +42,14 @@ const About = () => {
         </div>
       </div>
       <div className="py-5">
-        <h1 className="text-tertiary text-xl">
+        <h1 className="text-tertiary text-xl max-sm:text-lg">
           Here are a few technologies I've been working with recently:
         </h1>
         <div className="flex flex-wrap gap-5 mt-5">
           {skills.map((skill, index) => {
             return (
-              <div className="border border-tertiary px-10 py-2">
-                <h1 className="text-tertiary">{skill}</h1>
+              <div className="border border-tertiary px-10 py-2 max-sm:px-6 max-sm:py-1">
+                <h1 className="text-tertiary max-sm:text-sm">{skill}</h1>
               </div>
             );
           })}

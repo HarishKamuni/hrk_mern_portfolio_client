@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <div className="bg-primary px-40">
+      <div className="bg-primary px-40 max-sm:px-10">
         <Intro />
         <About />
       </div>

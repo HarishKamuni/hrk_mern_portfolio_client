@@ -2,9 +2,18 @@
 @import 'tailwindcss';
 
 @theme {
+    /* 🎨 Custom Colors */
   --color-primary: #0a192f;
   --color-secondary: #f97316;
   --color-tertiary: #54d688;
+
+  
+  /* 📱 Custom Breakpoints */
+   /* --breakpoint-xs: 400px; */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  /* --breakpoint-xl: 1280px; */
 }
 
 * {
