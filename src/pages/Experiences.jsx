@@ -15,7 +15,7 @@ const Experiences = () => {
                 onClick={() => setSelectedItemIndex(i)}
               >
                 <h1
-                  className={`text-xl pl-5 w-40 ${
+                  className={`text-lg max-sm:text-sm pl-5 w-40 ${
                     selectedItemIndex === i
                       ? 'text-tertiary border-l-4 -ml-[3px] bg-[#058a7442] py-2'
                       : 'text-white'

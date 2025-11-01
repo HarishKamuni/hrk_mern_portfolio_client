@@ -3,8 +3,13 @@ import Header from '../../components/Header';
 import Intro from './Intro';
 import About from './About';
 import Experiences from '../Experiences';
+import Projects from '../Projects';
+import Courses from '../Courses';
+import Contact from '../Contact';
+import Footer from '../Footer';
+import LeftSider from '../LeftSider';
 
-const Home = () => {
+const Home = ({ shaowLoading }) => {
   return (
     <div>
       <Header />
@@ -12,6 +17,11 @@ const Home = () => {
         <Intro />
         <About />
         <Experiences />
+        <Projects />
+        <Courses />
+        <Contact />
+        <Footer />
+        {shaowLoading ? null : <LeftSider />}
       </div>
     </div>
   );
