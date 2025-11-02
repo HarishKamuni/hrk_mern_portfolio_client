@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionTitle from '../components/SectionTitle';
+import SectionTitle from '../../components/SectionTitle';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const Contact = () => {
@@ -19,7 +19,7 @@ const Contact = () => {
           <p className="text-tertiary">{'{'}</p>
           {Object.keys(user).map((key) => {
             return (
-              <p className="flex gap-1 ml-5">
+              <p key={key} className="flex gap-1 ml-5">
                 <span className="text-tertiary">"{key}" :</span>
                 <span className="text-tertiary"> "{user[key]}"</span>
               </p>

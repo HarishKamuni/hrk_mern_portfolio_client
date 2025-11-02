@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SectionTitle from '../components/SectionTitle';
-import { courses } from '../resources/courses';
+import SectionTitle from '../../components/SectionTitle';
+import { courses } from '../../resources/courses';
 
 const Courses = () => {
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
@@ -13,6 +13,7 @@ const Courses = () => {
           {courses.map((p, i) => {
             return (
               <div
+                key={i}
                 className="cursor-pointer flex items-center"
                 onClick={() => setSelectedItemIndex(i)}
               >

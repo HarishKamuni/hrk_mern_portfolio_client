@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SectionTitle from '../components/SectionTitle';
-import { projects } from '../resources/projects';
+import SectionTitle from '../../components/SectionTitle';
+import { projects } from '../../resources/projects';
 
 const Projects = () => {
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
@@ -12,6 +12,7 @@ const Projects = () => {
           {projects.map((p, i) => {
             return (
               <div
+                key={i}
                 className="cursor-pointer flex items-center"
                 onClick={() => setSelectedItemIndex(i)}
               >
@@ -44,7 +45,10 @@ const Projects = () => {
             <div className="flex gap-5 cursor-pointer">
               {projects[selectedItemIndex].technologies.map((t, i) => {
                 return (
-                  <span className="text-white text-sm bg-[#763e0b] px-3 rounded-2xl hover:underline">
+                  <span
+                    key={i}
+                    className="text-white text-sm bg-[#763e0b] px-3 rounded-2xl hover:underline"
+                  >
                     {t}
                   </span>
                 );

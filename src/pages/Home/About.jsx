@@ -48,7 +48,10 @@ const About = () => {
         <div className="flex flex-wrap gap-5 mt-5">
           {skills.map((skill, index) => {
             return (
-              <div className="border border-tertiary px-10 py-2 max-sm:px-6 max-sm:py-1">
+              <div
+                key={index}
+                className="border border-tertiary px-10 py-2 max-sm:px-6 max-sm:py-1"
+              >
                 <h1 className="text-tertiary max-sm:text-sm">{skill}</h1>
               </div>
             );

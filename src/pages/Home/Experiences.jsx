@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import SectionTitle from '../components/SectionTitle';
-import { experiences } from '../resources/experiences';
+import SectionTitle from '../../components/SectionTitle';
+import { experiences } from '../../resources/experiences';
+
 const Experiences = () => {
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   return (
@@ -11,6 +12,7 @@ const Experiences = () => {
           {experiences.map((e, i) => {
             return (
               <div
+                key={i}
                 className="cursor-pointer flex items-center"
                 onClick={() => setSelectedItemIndex(i)}
               >
