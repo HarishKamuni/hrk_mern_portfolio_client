@@ -8,21 +8,25 @@ import Courses from './Courses';
 import Contact from './Contact';
 import Footer from './Footer';
 import LeftSider from './LeftSider';
+import { useSelector } from 'react-redux';
 
-const Home = ({ shaowLoading }) => {
+const Home = () => {
+  const { loading, portfolioData } = useSelector((state) => state.root);
   return (
     <div>
       <Header />
-      <div className="bg-primary px-40 max-sm:px-10">
-        <Intro />
-        <About />
-        <Experiences />
-        <Projects />
-        <Courses />
-        <Contact />
-        <Footer />
-        {shaowLoading ? null : <LeftSider />}
-      </div>
+      {portfolioData && (
+        <div className="bg-primary px-40 max-sm:px-10">
+          <Intro />
+          <About />
+          <Experiences />
+          <Projects />
+          <Courses />
+          <Contact />
+          <Footer />
+          {loading ? null : <LeftSider />}
+        </div>
+      )}
     </div>
   );
 };
