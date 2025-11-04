@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 const Contact = () => {
   const { loading, portfolioData } = useSelector((state) => state.root);
   const { contact } = portfolioData;
-  console.log(contact);
+ 
   return (
     <div className="pb-5">
       <SectionTitle title="Say Hello" />
