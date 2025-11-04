@@ -1,27 +1,23 @@
 import React from 'react';
 import SectionTitle from '../../components/SectionTitle';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { useSelector } from 'react-redux';
 
 const Contact = () => {
-  const user = {
-    name: 'Harish Kamuni',
-    age: 30,
-    gender: 'Male',
-    email: 'harishkamuni@gmail.com',
-    mobile: '7058443320',
-    country: 'INDIA',
-  };
+  const { loading, portfolioData } = useSelector((state) => state.root);
+  const { contact } = portfolioData;
+  console.log(contact);
   return (
     <div className="pb-5">
       <SectionTitle title="Say Hello" />
       <div className="flex items-center justify-between -pt-5 max-sm:flex-col">
         <div>
           <p className="text-tertiary">{'{'}</p>
-          {Object.keys(user).map((key) => {
+          {Object.keys(contact).map((key) => {
             return (
               <p key={key} className="flex gap-1 ml-5">
                 <span className="text-tertiary">"{key}" :</span>
-                <span className="text-tertiary"> "{user[key]}"</span>
+                <span className="text-tertiary"> "{contact[key]}"</span>
               </p>
             );
           })}

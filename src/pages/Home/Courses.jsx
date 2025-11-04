@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import SectionTitle from '../../components/SectionTitle';
-import { courses } from '../../resources/courses';
+import { useSelector } from 'react-redux';
 
 const Courses = () => {
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
+  const { loading, portfolioData } = useSelector((state) => state.root);
+  const { course } = portfolioData;
 
   return (
     <div>
       <SectionTitle title={'Courses'} />
       <div className="flex py-10 gap-40 max-sm:flex-col max-sm:gap-20">
         <div className="flex flex-col gap-10 border-l-2 border-[#06545490] w-1/3 max-sm:w-full max-sm:flex-row  max-sm:overflow-x-scroll max-sm:gap-3">
-          {courses.map((p, i) => {
+          {course.map((p, i) => {
             return (
               <div
                 key={i}
@@ -31,12 +33,12 @@ const Courses = () => {
           })}
         </div>
         <div className="flex gap-10 items-center justify-center max-sm:flex-col">
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 w-1/3 max-sm:w-full">
             <h1 className="text-secondary text-xl">
-              {courses[selectedItemIndex].title}
+              {course[selectedItemIndex].title}
             </h1>
 
-            <p className="text-white max-sm:text-sm">
+            <p className="text-white font-light text-sm max-sm:text-sm">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Molestias, aperiam dolorem. Esse assumenda aliquam quo natus
               molestias consequuntur, architecto nesciunt voluptatibus minima
@@ -44,9 +46,9 @@ const Courses = () => {
             </p>
           </div>
           <img
-            src={courses[selectedItemIndex].image}
+            src={course[selectedItemIndex].image}
             alt=""
-            className="h-60 w-2/3 max-sm:w-full"
+            className="h-60 w-2/3 object-fill max-sm:w-full"
           />
         </div>
       </div>

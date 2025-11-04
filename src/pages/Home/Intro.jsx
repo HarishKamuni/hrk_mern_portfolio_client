@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 const Intro = () => {
   const { loading, portfolioData } = useSelector((state) => state.root);
   const { intro } = portfolioData;
-  console.log(intro);
   const { welcomeText, firstName, lastName, caption, description } = intro;
   return (
     <div className="h-[80vh] bg-primary flex flex-col items-start justify-center gap-8 py-10">

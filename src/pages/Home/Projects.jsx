@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import SectionTitle from '../../components/SectionTitle';
-import { projects } from '../../resources/projects';
+import { useSelector } from 'react-redux';
 
 const Projects = () => {
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
+  const { loading, portfolioData } = useSelector((state) => state.root);
+  const { project } = portfolioData;
+
   return (
     <div>
       <SectionTitle title={'Projects'} />
       <div className="flex py-10 gap-40 max-sm:flex-col max-sm:gap-20">
         <div className="flex flex-col gap-10 border-l-2 border-[#06545490] w-1/3 max-sm:w-full max-sm:flex-row  max-sm:overflow-x-scroll max-sm:gap-3">
-          {projects.map((p, i) => {
+          {project.map((p, i) => {
             return (
               <div
                 key={i}
@@ -31,23 +34,23 @@ const Projects = () => {
         </div>
         <div className="flex gap-10 items-center justify-center max-sm:flex-col">
           <img
-            src={projects[selectedItemIndex].image}
+            src={project[selectedItemIndex].image}
             alt=""
-            className="h-60 w-2/3 max-sm:w-full"
+            className="h-60 w-2/3 object-contain max-sm:w-full"
           />
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 w-1/3 max-sm:w-full">
             <h1 className="text-secondary text-xl">
-              {projects[selectedItemIndex].title}
+              {project[selectedItemIndex].title}
             </h1>
             <p className="text-tertiary max-sm:text-sm">
-              {projects[selectedItemIndex].description}
+              {project[selectedItemIndex].link}
             </p>
             <div className="flex gap-5 cursor-pointer">
-              {projects[selectedItemIndex].technologies.map((t, i) => {
+              {project[selectedItemIndex].technologies.map((t, i) => {
                 return (
                   <span
                     key={i}
-                    className="text-white text-sm bg-[#763e0b] px-3 rounded-2xl hover:underline"
+                    className="text-white  text-sm bg-[#763e0b] px-3 rounded-2xl hover:underline"
                   >
                     {t}
                   </span>
@@ -55,13 +58,7 @@ const Projects = () => {
               })}
             </div>
             <p className="text-white max-sm:text-sm">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Molestias, aperiam dolorem. Esse assumenda aliquam quo natus
-              molestias consequuntur, architecto nesciunt voluptatibus minima
-              illo doloribus vitae et, tempora numquam. Iste repellendus,
-              molestias eaque dolore a reprehenderit consequatur quibusdam nisi
-              voluptate soluta nemo nam doloribus numquam tenetur quos sapiente
-              natus, enim perspiciatis.
+              {project[selectedItemIndex].description}
             </p>
           </div>
         </div>
