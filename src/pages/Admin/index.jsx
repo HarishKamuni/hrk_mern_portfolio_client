@@ -4,6 +4,7 @@ import { Tabs } from 'antd';
 import AdminIntro from './AdminIntro';
 import AdminAbout from './AdminAbout';
 import { useSelector } from 'react-redux';
+import AdminExperiences from './AdminExperiences';
 
 const Admin = () => {
   const { portfolioData } = useSelector((state) => state.root);
@@ -22,7 +23,7 @@ const Admin = () => {
     {
       key: '3',
       label: 'Experiences',
-      children: 'Experiences',
+      children: <AdminExperiences />,
     },
   ];
   return (
