@@ -10,18 +10,34 @@ const AdminExperiences = () => {
   const { experience } = portfolioData;
   const [showAddEditModal, setShowAddEditModal] = useState(false);
   const [selectedItemForEdit, setSelectedItemForEdit] = useState(null);
+  const [type, setType] = useState('add');
   const onFinish = async (values) => {
     try {
       dispatch(ShowLoading());
-      const response = await axios.post(
-        '/api/portfolio/add-experience',
-        values
-      );
-      console.log(response);
+      let response;
+
+      if (selectedItemForEdit) {
+        response = await axios.post('/api/portfolio/update-experience', {
+          ...values,
+          _id: selectedItemForEdit._id,
+        });
+      } else {
+        console.log('values', values);
+        const { title, period, description, company } = values;
+        if (
+          title !== undefined ||
+          period !== undefined ||
+          description !== undefined ||
+          company !== undefined
+        )
+          response = await axios.post('/api/portfolio/add-experience', values);
+      }
+
       dispatch(HideLoading());
       if (response.data.success) {
         message.success(response.data.message);
         setShowAddEditModal(false);
+        setSelectedItemForEdit(null);
         dispatch(HideLoading());
         dispatch(ReloadData(true));
       } else {
@@ -32,12 +48,38 @@ const AdminExperiences = () => {
     }
   };
 
+  const onDelete = async (item) => {
+    try {
+      console.log(item);
+      dispatch(ShowLoading());
+      const response = await axios.post('/api/portfolio/delete-experience', {
+        _id: item._id,
+      });
+      dispatch(HideLoading());
+      console.log(response);
+      if (response.data.success) {
+        message.success(response.data.message);
+        dispatch(HideLoading());
+        dispatch(ReloadData(true));
+      } else {
+        message.error(response.data.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
+
   return (
     <div>
       <div className="flex justify-end py-3">
         <button
           className="bg-primary text-white font-bold py-2 px-6 cursor-pointer"
-          onClick={() => setShowAddEditModal(true)}
+          onClick={() => {
+            setType('add');
+            setShowAddEditModal(true);
+            setSelectedItemForEdit(null);
+          }}
         >
           Add Experiences
         </button>
@@ -52,10 +94,20 @@ const AdminExperiences = () => {
               <h1>Role : {e.title}</h1>
               <h1>{e.description}</h1>
               <div className="flex gap-3 justify-end ">
-                <button className="text-white bg-secondary py-1 px-5 cursor-pointer hover:bg-red-700">
+                <button
+                  className="text-white bg-secondary py-1 px-5 cursor-pointer hover:bg-red-700"
+                  onClick={() => onDelete(experience[i])}
+                >
                   Delete
                 </button>
-                <button className="text-white bg-primary py-1 px-5 cursor-pointer hover:bg-blue-950">
+                <button
+                  className="text-white bg-primary py-1 px-5 cursor-pointer hover:bg-blue-950"
+                  onClick={() => {
+                    setSelectedItemForEdit(experience[i]);
+                    setShowAddEditModal(true);
+                    setType('edit');
+                  }}
+                >
                   Edit
                 </button>
               </div>
@@ -64,44 +116,56 @@ const AdminExperiences = () => {
         })}
       </div>
 
-      <Modal
-        open={showAddEditModal}
-        title={selectedItemForEdit ? 'Edit Experience' : 'Add Experience'}
-        // onOk={handleOk}
-        onCancel={() => setShowAddEditModal(false)}
-        footer={null}
-      >
-        <Form layout="vertical" onFinish={onFinish}>
-          <Form.Item name={'period'} label="Period">
-            <input placeholder="Period" />
-          </Form.Item>
-          <Form.Item name={'company'} label="Company">
-            <input placeholder="Company" />
-          </Form.Item>
-          <Form.Item name={'title'} label="Role">
-            <input placeholder="Role" />
-          </Form.Item>
-          <Form.Item name={'description'} label="Job Description">
-            <textarea placeholder="Job Description" />
-          </Form.Item>
-          <div className="flex justify-end gap-5">
-            <button
-              type="button"
-              className="bg-red-800 text-white py-1 px-5 cursor-pointer"
-              onClick={() => setShowAddEditModal(false)}
-            >
-              Cancel
-            </button>
+      {(type === 'add' || selectedItemForEdit) && (
+        <Modal
+          open={showAddEditModal}
+          title={selectedItemForEdit ? 'Edit Experience' : 'Add Experience'}
+          // onOk={handleOk}
+          onCancel={() => {
+            setShowAddEditModal(false);
+            setSelectedItemForEdit(null);
+          }}
+          footer={null}
+        >
+          <Form
+            layout="vertical"
+            initialValues={selectedItemForEdit}
+            onFinish={onFinish}
+          >
+            <Form.Item name="period" label="Period">
+              <input placeholder="Period" />
+            </Form.Item>
+            <Form.Item name="company" label="Company">
+              <input placeholder="Company" />
+            </Form.Item>
+            <Form.Item name="title" label="Role">
+              <input placeholder="Role" />
+            </Form.Item>
+            <Form.Item name="description" label="Job Description">
+              <textarea placeholder="Job Description" />
+            </Form.Item>
+            <div className="flex justify-end gap-5">
+              <button
+                type="button"
+                className="bg-red-800 text-white py-1 px-5 cursor-pointer"
+                onClick={() => {
+                  setShowAddEditModal(false);
+                  setSelectedItemForEdit(null);
+                }}
+              >
+                Cancel
+              </button>
 
-            <button
-              type="submit"
-              className="bg-primary text-white py-1 px-5 cursor-pointer rounded-md"
-            >
-              {selectedItemForEdit ? 'update' : 'add'}
-            </button>
-          </div>
-        </Form>
-      </Modal>
+              <button
+                type="submit"
+                className="bg-primary text-white py-1 px-5 cursor-pointer rounded-md"
+              >
+                {selectedItemForEdit ? 'update' : 'add'}
+              </button>
+            </div>
+          </Form>
+        </Modal>
+      )}
     </div>
   );
 };
