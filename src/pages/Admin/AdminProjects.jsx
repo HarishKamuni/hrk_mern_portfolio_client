@@ -1,7 +1,8 @@
-import { Form, Modal } from 'antd';
+import { Form, Modal, message } from 'antd';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
 
 const AdminProjects = () => {
   const dispatch = useDispatch();
@@ -10,13 +11,16 @@ const AdminProjects = () => {
   const [showAddEditModal, setShowAddEditModal] = useState(false);
   const [selectedItemForEdit, setSelectedItemForEdit] = useState(null);
   const [type, setType] = useState('add');
+
   const onFinish = async (values) => {
     try {
+      const tempTechnologies = values.technologies.split(',');
+      values.technologies = tempTechnologies;
       dispatch(ShowLoading());
       let response;
 
       if (selectedItemForEdit) {
-        response = await axios.post('/api/portfolio/update-experience', {
+        response = await axios.post('/api/portfolio/update-project', {
           ...values,
           _id: selectedItemForEdit._id,
         });
@@ -29,7 +33,7 @@ const AdminProjects = () => {
           description !== undefined ||
           company !== undefined
         )
-          response = await axios.post('/api/portfolio/add-experience', values);
+          response = await axios.post('/api/portfolio/add-project', values);
       }
 
       dispatch(HideLoading());
@@ -51,7 +55,7 @@ const AdminProjects = () => {
     try {
       console.log(item);
       dispatch(ShowLoading());
-      const response = await axios.post('/api/portfolio/delete-experience', {
+      const response = await axios.post('/api/portfolio/delete-project', {
         _id: item._id,
       });
       dispatch(HideLoading());
@@ -80,33 +84,34 @@ const AdminProjects = () => {
             setSelectedItemForEdit(null);
           }}
         >
-          Add Experiences
+          Add Project
         </button>
       </div>
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid grid-cols-3 gap-5">
         {project.map((e, i) => {
           return (
             <div key={e._id} className="shadow border p-5 flex flex-col gap-2">
-              <h1 className="text-primary font-bold text-xl">{e.title}</h1>
+              <h1 className="text-primary font-semibold text-xl">{e.title}</h1>
               <hr />
               <img
                 src={e.image}
                 alt=""
                 className="w-full h-40 object-contain"
               />
-              {/* <h1>Role : {e.title}</h1> */}
-              <h1>{e.description}</h1>
+              <p>{e.link}</p>
+              <h1>{e.technologies.join(', ')}</h1>
+              <p>{e.description}</p>
               <div className="flex gap-3 justify-end ">
                 <button
                   className="text-white bg-secondary py-1 px-5 cursor-pointer hover:bg-red-700"
-                  onClick={() => onDelete(experience[i])}
+                  onClick={() => onDelete(project[i])}
                 >
                   Delete
                 </button>
                 <button
                   className="text-white bg-primary py-1 px-5 cursor-pointer hover:bg-blue-950"
                   onClick={() => {
-                    setSelectedItemForEdit(experience[i]);
+                    setSelectedItemForEdit(project[i]);
                     setShowAddEditModal(true);
                     setType('edit');
                   }}
@@ -132,20 +137,28 @@ const AdminProjects = () => {
         >
           <Form
             layout="vertical"
-            initialValues={selectedItemForEdit}
+            initialValues={
+              {
+                ...selectedItemForEdit,
+                technologies: selectedItemForEdit?.technologies.join(', '),
+              } || {}
+            }
             onFinish={onFinish}
           >
-            <Form.Item name="period" label="Period">
-              <input placeholder="Period" />
+            <Form.Item name="title" label="Title">
+              <input placeholder="Title" />
             </Form.Item>
-            <Form.Item name="company" label="Company">
-              <input placeholder="Company" />
+            <Form.Item name="image" label="Image URL">
+              <input placeholder="image" />
             </Form.Item>
-            <Form.Item name="title" label="Role">
-              <input placeholder="Role" />
+            <Form.Item name="link" label="Link">
+              <input placeholder="Link" />
             </Form.Item>
-            <Form.Item name="description" label="Job Description">
-              <textarea placeholder="Job Description" />
+            <Form.Item name="technologies" label="TechStack">
+              <input placeholder="TechStack" />
+            </Form.Item>
+            <Form.Item name="description" label="Project Description">
+              <textarea placeholder="Project Description" />
             </Form.Item>
             <div className="flex justify-end gap-5">
               <button
