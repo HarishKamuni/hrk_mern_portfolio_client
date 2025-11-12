@@ -6,6 +6,7 @@ import AdminAbout from './AdminAbout';
 import { useSelector } from 'react-redux';
 import AdminExperiences from './AdminExperiences';
 import AdminProjects from './AdminProjects';
+import AdminCourses from './AdminCourses';
 
 const Admin = () => {
   const { portfolioData } = useSelector((state) => state.root);
@@ -28,8 +29,13 @@ const Admin = () => {
     },
     {
       key: '4',
-      label: 'Project',
+      label: 'Projects',
       children: <AdminProjects />,
+    },
+    {
+      key: '5',
+      label: 'Courses',
+      children: <AdminCourses />,
     },
   ];
   return (

@@ -39,10 +39,7 @@ const Courses = () => {
             </h1>
 
             <p className="text-white font-light text-sm max-sm:text-sm">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Molestias, aperiam dolorem. Esse assumenda aliquam quo natus
-              molestias consequuntur, architecto nesciunt voluptatibus minima
-              illo doloribus vitae et,
+              {course[selectedItemIndex].description}
             </p>
           </div>
           <img
