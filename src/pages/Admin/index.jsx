@@ -8,6 +8,7 @@ import AdminExperiences from './AdminExperiences';
 import AdminProjects from './AdminProjects';
 import AdminCourses from './AdminCourses';
 import AdminContact from './AdminContact';
+import SectionTitle from '../../components/SectionTitle';
 
 const Admin = () => {
   const { portfolioData } = useSelector((state) => state.root);
@@ -47,9 +48,15 @@ const Admin = () => {
   return (
     <div>
       {/* <Header /> */}
-      <h1 className="text-3xl font-bold text-primary  px-5 py-5">
+      <div className="flex items-center gap-10 max-sm:gap-3 px-5 py-5">
+        <h1 className="text-3xl font-bold text-primary max-sm:text-xl max-sm:w-32 ">
+          Portfolio Admin
+        </h1>
+        <div className="w-60 h-px bg-gray-500 max-sm:w-40"></div>
+      </div>
+      {/* <h1 className="text-3xl font-bold text-primary  px-5 py-5">
         Portfolio Admin
-      </h1>
+      </h1> */}
       <hr className="opacity-5 mx-5" />
       {portfolioData && (
         <div className="px-5">
