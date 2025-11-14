@@ -68,7 +68,7 @@ const AdminExperiences = () => {
     <div>
       <div className="flex justify-end py-3">
         <button
-          className="bg-primary text-white font-bold py-2 px-6 cursor-pointer"
+          className="bg-primary text-white font-bold py-2 px-6 cursor-pointer "
           onClick={() => {
             setType('add');
             setShowAddEditModal(true);
@@ -78,7 +78,7 @@ const AdminExperiences = () => {
           Add Experiences
         </button>
       </div>
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid grid-cols-4 gap-5 max-sm:grid-cols-1">
         {experience.map((e, i) => {
           return (
             <div key={e._id} className="shadow border p-5 flex flex-col gap-2">

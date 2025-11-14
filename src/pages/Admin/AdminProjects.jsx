@@ -87,7 +87,7 @@ const AdminProjects = () => {
           Add Project
         </button>
       </div>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-3 gap-5 max-sm:grid-cols-1">
         {project.map((e, i) => {
           return (
             <div key={e._id} className="shadow border p-5 flex flex-col gap-2">

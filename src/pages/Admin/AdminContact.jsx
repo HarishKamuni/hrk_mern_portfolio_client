@@ -32,7 +32,7 @@ const AdminContact = () => {
         onFinish={onFinish}
         layout="vertical"
         initialValues={portfolioData.contact}
-        className="grid grid-cols-2 gap-5"
+        className="grid grid-cols-2 gap-5 max-sm:grid-cols-1 max-sm:gap-0"
       >
         <Form.Item name={'name'} label="Name">
           <input placeholder="Name" />

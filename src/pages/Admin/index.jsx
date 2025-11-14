@@ -46,9 +46,13 @@ const Admin = () => {
   ];
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
+      <h1 className="text-3xl font-bold text-primary  px-5 py-5">
+        Portfolio Admin
+      </h1>
+      <hr className="opacity-5 mx-5" />
       {portfolioData && (
-        <div className="p-10">
+        <div className="px-5">
           <Tabs defaultActiveKey="1" items={items} />
         </div>
       )}
