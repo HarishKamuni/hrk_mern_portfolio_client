@@ -12,6 +12,7 @@ import {
   setPortfolioData,
 } from './redux/rootSlice';
 import Admin from './pages/Admin';
+import AdminLogin from './pages/Admin/AdminLogin';
 
 function App() {
   const { loading, portfolioData, reloadData } = useSelector(
@@ -53,6 +54,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
       </Routes>
     </BrowserRouter>
   );

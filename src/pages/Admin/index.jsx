@@ -44,6 +44,7 @@ const Admin = () => {
       label: 'Contact',
       children: <AdminContact />,
     },
+    
   ];
   return (
     <div>
