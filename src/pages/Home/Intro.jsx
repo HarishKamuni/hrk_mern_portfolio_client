@@ -14,7 +14,7 @@ const Intro = () => {
       <h1 className="text-6xl max-sm:text-2xl text-white font-semibold">
         {caption || 'caption'}
       </h1>
-      <p className="text-white w-2/3 max-sm:font-light max-sm:text-sm">
+      <p className="text-white w-2/3 max-sm:font-light max-sm:text-sm max-sm:w-full">
         {description || 'desc'}
       </p>
       <button className="border-2 border-tertiary px-10 py-3 rounded text-tertiary max-sm:py-2 max-sm:text-sm">

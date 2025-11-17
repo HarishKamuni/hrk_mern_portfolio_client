@@ -11,7 +11,7 @@ const About = () => {
     <div>
       <SectionTitle title={'About'} />
       <div className="flex items-center max-sm:flex-col">
-        <div className="h-[70vh] w-4xl -ml-30 max-sm:ml-0 max-sm:w-3xl">
+        <div className="h-[75vh] w-3xl -ml-30 max-sm:ml-0 max-sm:w-xl">
           <DotLottieReact src={lottiUrl} loop autoplay />
         </div>
         <div className="flex flex-col gap-5 w-1/2 max-sm:w-full">

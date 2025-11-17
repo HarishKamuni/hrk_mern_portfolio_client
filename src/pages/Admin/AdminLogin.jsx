@@ -22,7 +22,7 @@ const AdminLogin = () => {
       if (response.data.success) {
         console.log(response.data.message);
         message.success(response.data.message);
-        localStorage.setItem('token', response.data);
+        localStorage.setItem('token', JSON.stringify(response.data));
         // window.location.href = '/admin';
         navigate('/admin');
       } else {
@@ -36,10 +36,10 @@ const AdminLogin = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-96 flex flex-col gap-5  p-5 shadow border border-gray-500">
-        <h1 className="text-2xl text-primary font-semibold text-center uppercase">
-          Harish - Admin Login
+    <div className="flex justify-center items-center h-screen bg-primary">
+      <div className="w-96 flex flex-col gap-5  p-5 shadow border border-gray-500 bg-white">
+        <h1 className="text-xl text-primary font-semibold text-center uppercase">
+          Portfolio - Admin Login
         </h1>
         <hr className="opacity-15" />
         <form onSubmit={(e) => login(e)} className="flex flex-col gap-5">

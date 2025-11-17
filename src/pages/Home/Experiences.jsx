@@ -6,7 +6,6 @@ const Experiences = () => {
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   const { loading, portfolioData } = useSelector((state) => state.root);
   const { experience } = portfolioData;
- 
 
   return (
     <div>
@@ -40,7 +39,7 @@ const Experiences = () => {
           <h1 className="text-tertiary ">
             {experience[selectedItemIndex].company}
           </h1>
-          <p className="text-white">
+          <p className="text-white ">
             {experience[selectedItemIndex].description}
           </p>
         </div>

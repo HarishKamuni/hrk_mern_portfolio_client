@@ -81,13 +81,22 @@ const AdminExperiences = () => {
       <div className="grid grid-cols-4 gap-5 max-sm:grid-cols-1">
         {experience.map((e, i) => {
           return (
-            <div key={e._id} className="shadow border p-5 flex flex-col gap-2">
-              <h1 className="text-primary font-bold text-xl">{e.period}</h1>
-              <hr />
-              <h1>Company : {e.company}</h1>
-              <h1>Role : {e.title}</h1>
-              <h1>{e.description}</h1>
-              <div className="flex gap-3 justify-end ">
+            <div
+              key={e._id}
+              className="shadow border p-5 flex flex-col justify-between"
+            >
+              <div className="flex flex-col gap-2">
+                <h1 className="text-primary font-bold text-xl">{e.period}</h1>
+                <hr />
+                <h1>Company : {e.company}</h1>
+                <h1>Role : {e.title}</h1>
+                <p className="max-h-36 overflow-hidden mb-5">
+                  {e.description.length > 200
+                    ? `${e.description.slice(0, 180)}....`
+                    : e.description}
+                </p>
+              </div>
+              <div className="flex gap-3 justify-end">
                 <button
                   className="text-white bg-secondary py-1 px-5 cursor-pointer hover:bg-red-700"
                   onClick={() => onDelete(experience[i])}

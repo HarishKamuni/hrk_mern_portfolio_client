@@ -86,17 +86,28 @@ const AdminCourses = () => {
       <div className="grid grid-cols-3 gap-5 max-sm:grid-cols-1">
         {course.map((e, i) => {
           return (
-            <div key={e._id} className="shadow border p-5 flex flex-col gap-2">
-              <h1 className="text-primary font-semibold text-xl">{e.title}</h1>
-              <hr />
-              <img
-                src={e.image}
-                alt=""
-                className="w-full h-40 object-contain"
-              />
-              <p>{e.link}</p>
+            <div
+              key={e._id}
+              className="shadow border p-5 flex flex-col justify-between"
+            >
+              <div className="flex flex-col gap-2">
+                <h1 className="text-primary font-semibold text-xl">
+                  {e.title}
+                </h1>
+                <hr />
+                <img
+                  src={e.image}
+                  alt=""
+                  className="w-full h-40 object-contain"
+                />
+                <p>{e.link}</p>
 
-              <p>{e.description}</p>
+                <p className="max-h-36 overflow-hidden mb-5">
+                  {e.description.length > 200
+                    ? `${e.description.slice(0, 180)}....`
+                    : e.description}
+                </p>
+              </div>
               <div className="flex gap-3 justify-end ">
                 <button
                   className="text-white bg-secondary py-1 px-5 cursor-pointer hover:bg-red-700"
