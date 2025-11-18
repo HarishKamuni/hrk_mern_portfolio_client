@@ -3,7 +3,6 @@ import './App.css';
 import Home from './pages/Home';
 import Loader from './components/Loader';
 import { useEffect } from 'react';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   HideLoading,
@@ -13,6 +12,7 @@ import {
 } from './redux/rootSlice';
 import Admin from './pages/Admin';
 import AdminLogin from './pages/Admin/AdminLogin';
+import API from './utils/axiosInstance';
 
 function App() {
   const { loading, portfolioData, reloadData } = useSelector(
@@ -23,8 +23,8 @@ function App() {
   const getPortfolioData = async () => {
     try {
       dispatch(ShowLoading());
-      const response = await axios.get('/api/portfolio/get-portfolio-data');
-      // console.log(response);
+      const response = await API.get('/api/portfolio/get-portfolio-data');
+      console.log(response);
       // setTimeout(() => {
       dispatch(setPortfolioData(response.data));
       dispatch(ReloadData(false));

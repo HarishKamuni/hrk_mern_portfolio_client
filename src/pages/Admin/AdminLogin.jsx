@@ -1,9 +1,9 @@
 import { message } from 'antd';
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { HideLoading, ShowLoading } from '../../redux/rootSlice';
 import { useNavigate } from 'react-router-dom';
+import API from '../../utils/axiosInstance';
 
 const AdminLogin = () => {
   const [userData, setUserData] = useState({
@@ -16,7 +16,7 @@ const AdminLogin = () => {
     e.preventDefault();
     try {
       dispatch(ShowLoading());
-      const response = await axios.post('/api/portfolio/admin-login', userData);
+      const response = await API.post(`/api/portfolio/admin-login`, userData);
       dispatch(HideLoading());
 
       if (response.data.success) {

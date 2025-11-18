@@ -1,8 +1,8 @@
-import { Button, Form, Modal, message } from 'antd';
+import { Form, Modal, message } from 'antd';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
-import axios from 'axios';
+import API from '../../utils/axiosInstance';
 
 const AdminExperiences = () => {
   const dispatch = useDispatch();
@@ -17,14 +17,14 @@ const AdminExperiences = () => {
       let response;
 
       if (selectedItemForEdit) {
-        response = await axios.post('/api/portfolio/update-experience', {
+        response = await API.post(`/api/portfolio/update-experience`, {
           ...values,
           _id: selectedItemForEdit._id,
         });
       } else {
         const { title, image, description, technologies, link } = values;
         if (title !== undefined || description !== undefined)
-          response = await axios.post('/api/portfolio/add-experience', values);
+          response = await API.post(`/api/portfolio/add-experience`, values);
       }
 
       dispatch(HideLoading());
@@ -46,7 +46,7 @@ const AdminExperiences = () => {
     try {
       console.log(item);
       dispatch(ShowLoading());
-      const response = await axios.post('/api/portfolio/delete-experience', {
+      const response = await API.post(`/api/portfolio/delete-experience`, {
         _id: item._id,
       });
       dispatch(HideLoading());

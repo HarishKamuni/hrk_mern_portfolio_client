@@ -2,7 +2,8 @@ import { Form, message } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ShowLoading, HideLoading } from '../../redux/rootSlice';
-import axios from 'axios';
+
+import API from '../../utils/axiosInstance';
 
 const AdminIntro = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const AdminIntro = () => {
   const onFinish = async (values) => {
     try {
       dispatch(ShowLoading());
-      const response = await axios.post('/api/portfolio/update-intro', {
+      const response = await API.post(`/api/portfolio/update-intro`, {
         ...values,
         _id: portfolioData.intro._id,
       });

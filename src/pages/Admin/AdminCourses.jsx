@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
+import API from '../../utils/axiosInstance';
 
 const AdminCourses = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const AdminCourses = () => {
       let response;
 
       if (selectedItemForEdit) {
-        response = await axios.post('/api/portfolio/update-course', {
+        response = await API.post(`/api/portfolio/update-course`, {
           ...values,
           _id: selectedItemForEdit._id,
         });
@@ -27,7 +28,7 @@ const AdminCourses = () => {
         console.log('values', values);
         const { title, description, image, link } = values;
         if (title !== undefined || description !== undefined)
-          response = await axios.post('/api/portfolio/add-course', values);
+          response = await API.post(`/api/portfolio/add-course`, values);
       }
 
       dispatch(HideLoading());
@@ -50,7 +51,7 @@ const AdminCourses = () => {
     try {
       console.log(item);
       dispatch(ShowLoading());
-      const response = await axios.post('/api/portfolio/delete-course', {
+      const response = await API.post(`/api/portfolio/delete-course`, {
         _id: item._id,
       });
       dispatch(HideLoading());

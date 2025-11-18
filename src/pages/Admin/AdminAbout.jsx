@@ -2,7 +2,7 @@ import { Form, message } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ShowLoading, HideLoading } from '../../redux/rootSlice';
-import axios from 'axios';
+import API from '../../utils/axiosInstance';
 
 const AdminAbout = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const AdminAbout = () => {
       const tempSkills = values.skills.split(',');
       values.skills = tempSkills;
       dispatch(ShowLoading());
-      const response = await axios.post('/api/portfolio/update-about', {
+      const response = await API.post(`/api/portfolio/update-about`, {
         ...values,
         _id: portfolioData.about._id,
       });

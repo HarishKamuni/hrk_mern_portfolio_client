@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { HideLoading, ReloadData, ShowLoading } from '../../redux/rootSlice';
+import API from '../../utils/axiosInstance';
 
 const AdminProjects = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const AdminProjects = () => {
       let response;
 
       if (selectedItemForEdit) {
-        response = await axios.post('/api/portfolio/update-project', {
+        response = await API.post(`/api/portfolio/update-project`, {
           ...values,
           _id: selectedItemForEdit._id,
         });
@@ -33,7 +34,7 @@ const AdminProjects = () => {
           description !== undefined ||
           company !== undefined
         )
-          response = await axios.post('/api/portfolio/add-project', values);
+          response = await API.post(`/api/portfolio/add-project`, values);
       }
 
       dispatch(HideLoading());
@@ -55,7 +56,7 @@ const AdminProjects = () => {
     try {
       console.log(item);
       dispatch(ShowLoading());
-      const response = await axios.post('/api/portfolio/delete-project', {
+      const response = await API.post(`/api/portfolio/delete-project`, {
         _id: item._id,
       });
       dispatch(HideLoading());
