@@ -8,7 +8,7 @@ const Contact = () => {
   const { contact } = portfolioData;
 
   return (
-    <div className="pb-5">
+    <div className="">
       <SectionTitle title="Say Hello" />
       <div className="flex items-center justify-between -pt-5 max-sm:flex-col">
         <div>

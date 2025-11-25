@@ -6,7 +6,7 @@ const Intro = () => {
   const { intro } = portfolioData;
   const { welcomeText, firstName, lastName, caption, description } = intro;
   return (
-    <div className="h-[80vh] bg-primary flex flex-col items-start justify-center gap-8 py-10">
+    <div className="h-[80vh] bg-primary flex flex-col items-start justify-center gap-8 py-10 ">
       <h1 className="text-white">{welcomeText || 'Hi, I am'}</h1>
       <h1 className="text-7xl max-sm:text-3xl text-secondary font-semibold">
         {firstName || 'firstName'} {lastName || 'lastName'}

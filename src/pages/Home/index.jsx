@@ -21,7 +21,7 @@ const Home = () => {
           <About />
           <Experiences />
           <Projects />
-          <Courses />
+          {/* <Courses /> */}
           <Contact />
           <Footer />
           {loading ? null : <LeftSider />}
