@@ -42,7 +42,7 @@ const AdminAbout = () => {
           <input placeholder="Lottie URL" />
         </Form.Item>
 
-        <Form.Item name={'description1'} label="Description 1">
+        <Form.Item name={'description'} label="Description 1">
           <textarea placeholder="Description 1 " />
         </Form.Item>
         <Form.Item name={'description2'} label="Description 2">

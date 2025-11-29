@@ -19,7 +19,7 @@ const Home = () => {
         <div className="bg-primary px-40 max-sm:px-10">
           <Intro />
           <About />
-          <Experiences />
+          {/* <Experiences /> */}
           <Projects />
           {/* <Courses /> */}
           <Contact />

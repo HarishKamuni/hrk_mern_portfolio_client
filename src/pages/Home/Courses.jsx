@@ -9,7 +9,7 @@ const Courses = () => {
 
   return (
     <div>
-      <SectionTitle title={'Courses'} />
+      <SectionTitle title={'Certificates'} />
       <div className="flex py-10 gap-40 max-sm:flex-col max-sm:gap-20">
         <div className="flex flex-col gap-10 border-l-2 border-[#06545490] w-1/3 max-sm:w-full max-sm:flex-row  max-sm:overflow-x-scroll max-sm:gap-3">
           {course.map((p, i) => {
